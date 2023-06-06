@@ -1,0 +1,45 @@
+{% extends "task/base.html" %}
+
+{% block content %}
+<div>
+    <div>
+        <div>
+            <h3>Edit list:</h3>
+            <h5>{{ todo_list.title | upper }}</h5>
+            <h5>{{ status.title | upper }}</h5>
+        </div>
+        <ul>
+            {% if user.is_authenticated %}
+            {% for todo in object_list %}
+            <li>
+                <div>
+                    <div
+                        role="button"
+                        onclick="location.href=
+                        '{% url "item-update" todo_list.id todo.id %}'">
+                        {{ todo.title }}
+                        (Due {{ todo.due_date | date:"l, F j"}}) 
+                    </div>
+            <div class="date postdate">
+                <p>Published on: {{ todo.published_date }}</p>
+            <div>
+                <p>{{ Status.title }}</p>
+            </div>
+
+            </div>
+            </li>
+            {% empty %}
+            <p>There are no to-do items in this list.</p>
+            {% endfor %}
+            {% endif %}
+        </ul>
+        <p>
+            <input
+                value="Add a new item"
+                type="button"
+                onclick="location.href='{% url "item-add" todo_list.id %}';">
+            
+        </p>
+    </div>
+</div>
+{% endblock %}
