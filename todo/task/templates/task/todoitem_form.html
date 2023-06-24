@@ -5,7 +5,7 @@
 <h3>{{ title }}</h3>
 <form method="post">
     {% csrf_token %}
-    <table>
+    <table id="body">
         {{ form.as_table }}
 
     </table>
